@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4a827e5e-dd2d-4114-9d66-85185f875ac2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -25,6 +36,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Spigot" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RunManager">
     <configuration name="ZiiM Crates build" type="MavenRunConfiguration" factoryName="Maven">
@@ -62,7 +76,76 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600593722876</updated>
+      <workItem from="1600593824822" duration="1769000" />
+      <workItem from="1600597443948" duration="3000" />
+      <workItem from="1600597478990" duration="1043000" />
+      <workItem from="1600598565649" duration="71000" />
+      <workItem from="1600598647938" duration="21000" />
+      <workItem from="1600598679368" duration="31000" />
+      <workItem from="1600598716912" duration="16000" />
+      <workItem from="1600598738724" duration="89000" />
+      <workItem from="1600598843889" duration="346000" />
+      <workItem from="1600599258641" duration="1150000" />
+      <workItem from="1600600736681" duration="98000" />
+      <workItem from="1600600928300" duration="378000" />
+      <workItem from="1600601340902" duration="8386000" />
+      <workItem from="1600669093704" duration="602000" />
+      <workItem from="1600669720493" duration="2055000" />
+      <workItem from="1600671868053" duration="3804000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="227" key="#com.intellij.ide.util.MemberChooser" timestamp="1600603746422">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="765" y="227" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600603746422" />
+    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1600670412912">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600670412912" />
+    <state width="1876" height="323" key="GridCell.Tab.0.bottom" timestamp="1600675672135">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1876" height="323" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600675672135" />
+    <state width="1876" height="323" key="GridCell.Tab.0.center" timestamp="1600675672135">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1876" height="323" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600675672135" />
+    <state width="1876" height="323" key="GridCell.Tab.0.left" timestamp="1600675672135">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1876" height="323" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600675672135" />
+    <state width="1876" height="323" key="GridCell.Tab.0.right" timestamp="1600675672135">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1876" height="323" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600675672135" />
+    <state x="490" y="178" key="Maven.ArtifactSearchDialog" timestamp="1600673052554">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="490" y="178" key="Maven.ArtifactSearchDialog/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600673052554" />
+    <state x="461" y="155" key="SettingsEditor" timestamp="1600597679403">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="155" key="SettingsEditor/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600597679403" />
+    <state x="681" y="254" width="540" height="540" key="StructurePopup" timestamp="1600597907165">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="681" y="254" width="540" height="540" key="StructurePopup/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600597907165" />
+    <state x="92" y="92" width="1736" height="866" key="dock-window-1" timestamp="1600597433210">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="92" y="92" width="1736" height="866" key="dock-window-1/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600597433210" />
+    <state x="668" y="242" width="583" height="566" key="find.popup" timestamp="1600606607887">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="668" y="242" width="583" height="566" key="find.popup/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600606607887" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1600671060762">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1600671060762" />
   </component>
 </project>

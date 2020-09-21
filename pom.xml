@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.ziim</groupId>
-    <artifactId>crates</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ziimCrates</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>ZiiMCrates</name>
