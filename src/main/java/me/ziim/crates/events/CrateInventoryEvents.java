@@ -27,14 +27,17 @@ public class CrateInventoryEvents implements Listener {
         ItemStack clickedItem = e.getCurrentItem();
         InventoryView view = e.getView();
         Inventory inv = e.getClickedInventory();
-        if(clickedItem == null || !clickedItem.hasItemMeta()) {
+        if (clickedItem == null || !clickedItem.hasItemMeta()) {
             return;
         }
         for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
             String title = Config.get().getString(keys + ".Title");
             if (view.getTitle().equals(title)) {
-                inv.setItem(18, Config.get().getItemStack(keys + ".Key"));
-                if (clickedItem.getType().equals(Material.GREEN_STAINED_GLASS_PANE)) {
+
+                ItemStack key = Config.get().getItemStack(keys + ".Key");
+                boolean hasKey = player.getInventory().containsAtLeast(key, 1);
+                inv.setItem(18, key);
+                if (clickedItem.getType().equals(Material.GREEN_STAINED_GLASS_PANE) && hasKey) {
                     ItemStack shovel = new ItemStack(Material.DIAMOND_SHOVEL);
                     ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
                     ItemStack wood = new ItemStack(Material.OAK_LOG);
@@ -52,6 +55,7 @@ public class CrateInventoryEvents implements Listener {
                         inv.setItem(i, rngItem.getRandom().item);
                     }
                     player.getInventory().addItem(inv.getItem(13));
+                    player.getInventory().removeItem(key);
                 } else if (clickedItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
                     view.close();
                 }
