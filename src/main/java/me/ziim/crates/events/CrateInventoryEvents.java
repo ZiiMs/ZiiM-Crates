@@ -3,41 +3,44 @@ package me.ziim.crates.events;
 import me.ziim.crates.Config;
 import me.ziim.crates.Item;
 import me.ziim.crates.RandomSelector;
+import me.ziim.crates.inventories.EditorInventory;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CrateInventoryEvents implements Listener {
-
-    public String key;
-
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();
-        InventoryAction action = e.getAction();
         ItemStack clickedItem = e.getCurrentItem();
         InventoryView view = e.getView();
         Inventory inv = e.getClickedInventory();
-        if (clickedItem == null || !clickedItem.hasItemMeta()) {
+        if (clickedItem == null) {
             return;
         }
         for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
             String title = Config.get().getString(keys + ".Title");
             if (view.getTitle().equals(title)) {
-
+                e.setCancelled(true);
                 ItemStack key = Config.get().getItemStack(keys + ".Key");
                 boolean hasKey = player.getInventory().containsAtLeast(key, 1);
-                inv.setItem(18, key);
+                boolean hasSlot = Arrays.toString(player.getInventory().getStorageContents()).contains("null");
                 if (clickedItem.getType().equals(Material.GREEN_STAINED_GLASS_PANE) && hasKey) {
+                    if (!hasSlot) {
+                        player.sendMessage("You have no inventory space!");
+                        view.close();
+                        return;
+                    }
                     ItemStack shovel = new ItemStack(Material.DIAMOND_SHOVEL);
                     ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
                     ItemStack wood = new ItemStack(Material.OAK_LOG);
@@ -58,11 +61,22 @@ public class CrateInventoryEvents implements Listener {
                     player.getInventory().removeItem(key);
                 } else if (clickedItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
                     view.close();
+                } else if (clickedItem.getType().equals(Material.YELLOW_STAINED_GLASS_PANE) && hasPerm(player, "zc.createcrate")) {
+                    EditorInventory editInv = new EditorInventory();
+                    editInv.editInventory(player, view.getTitle());
                 }
-
-                e.setCancelled(true);
                 break;
             }
         }
+    }
+
+
+    public boolean hasPerm(Player player, String perm) {
+        for (PermissionAttachmentInfo perms : player.getEffectivePermissions()) {
+            if (perms.getPermission().equals(perm) || player.isOp()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

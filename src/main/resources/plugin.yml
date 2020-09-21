@@ -10,3 +10,8 @@ commands:
   cratetool:
     description: Creates a crate for RNG loot
     usage: §eUSAGE /cratetool <crate name>
+    permission: zc.createcrate
+  getkey:
+    description: Gives you the key for specified crate
+    usage: §eUSAGE /getkey <crate id>
+    permission: zc.getkey

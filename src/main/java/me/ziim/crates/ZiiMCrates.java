@@ -1,8 +1,10 @@
 package me.ziim.crates;
 
 import me.ziim.crates.commands.CommandCrateTool;
+import me.ziim.crates.commands.CommandGetKey;
 import me.ziim.crates.events.ChestEvents;
 import me.ziim.crates.events.CrateInventoryEvents;
+import me.ziim.crates.events.EditorInventoryEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ZiiMCrates extends JavaPlugin {
@@ -18,8 +20,10 @@ public final class ZiiMCrates extends JavaPlugin {
         Config.save();
 
         this.getCommand("cratetool").setExecutor(new CommandCrateTool());
+        this.getCommand("getkey").setExecutor(new CommandGetKey());
         this.getServer().getPluginManager().registerEvents(new ChestEvents(), this);
         this.getServer().getPluginManager().registerEvents(new CrateInventoryEvents(), this);
+        this.getServer().getPluginManager().registerEvents(new EditorInventoryEvent(), this);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -65,6 +66,7 @@ public class ChestEvents implements Listener {
     @EventHandler
     public void onOpenChest(PlayerInteractEvent e) {
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getClickedBlock().getType().equals(Material.CHEST)) {
+            Player player = e.getPlayer();
             Chest chestBlock = (Chest) e.getClickedBlock().getState();
             Location location = e.getClickedBlock().getLocation();
             for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
@@ -72,7 +74,10 @@ public class ChestEvents implements Listener {
                     e.setCancelled(true);
                     System.out.println("found it!" + Config.get().getString(keys + ".Title"));
                     CrateInventory i = new CrateInventory();
-                    i.crateInventory(e.getPlayer(), Config.get().getString(keys + ".Title"));
+                    Inventory inv = i.crateInventory(e.getPlayer(), Config.get().getString(keys + ".Title"));
+
+                    ItemStack key = Config.get().getItemStack(keys + ".Key");
+                    inv.setItem(18, key);
                     break;
                 }
             }
