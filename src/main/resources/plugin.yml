@@ -5,3 +5,8 @@ api-version: 1.16
 authors: [ ZiiM ]
 description: A simple crates mod by ZiiM
 website: https://github.com/ZiiMs/ZiiM-Crates
+
+commands:
+  cratetool:
+    description: Creates a crate for RNG loot
+    usage: §eUSAGE /cratetool <crate name>
