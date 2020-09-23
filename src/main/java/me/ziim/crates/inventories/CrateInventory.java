@@ -85,8 +85,11 @@ public class CrateInventory implements IHelper {
                         whoClicked.sendMessage("You are already rolling");
                         return;
                     }
-                    System.out.println("running = " + running);
                     ArrayList<ItemStack> itemsList = (ArrayList<ItemStack>) Config.get().getList(keys + ".Items");
+                    if (itemsList == null) {
+                        whoClicked.sendMessage(ChatColor.RED + "ERROR: " + ChatColor.WHITE + "please tell the administrator to set the items inside the crate.");
+                        return;
+                    }
                     Map<ItemStack, Integer> dupeCount = new HashMap<>();
                     itemsList.forEach(a -> dupeCount.put(a, dupeCount.getOrDefault(a, 0) + 1));
                     List<Item> rngItemList = new ArrayList<>();

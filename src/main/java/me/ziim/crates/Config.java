@@ -14,7 +14,6 @@ public class Config {
     public static void setup() {
         file = new File(ZiiMCrates.getPlugin(ZiiMCrates.class).getDataFolder(), "data.yml");
         if (!file.exists()) {
-            System.out.println("No file!");
             try {
                 file.createNewFile();
             } catch (IOException e) {

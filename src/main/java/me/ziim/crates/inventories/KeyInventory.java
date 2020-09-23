@@ -36,7 +36,6 @@ public class KeyInventory implements IHelper {
         for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
             String cfgtitle = Config.get().getString(keys + ".Title");
             if (title.trim().equals(cfgtitle)) {
-                System.out.println(title);
                 inventory.setItem(13, Config.get().getItemStack(keys + ".Key"));
             }
         }
@@ -69,7 +68,6 @@ public class KeyInventory implements IHelper {
         }
         if (clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE)) return;
         if (clickedItem.getType().equals(Material.GREEN_STAINED_GLASS_PANE)) {
-            System.out.println("Save");
             for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
                 String foundTitle = Config.get().getString(keys + ".Title");
                 if (view.getTitle().equals(foundTitle + " key")) {

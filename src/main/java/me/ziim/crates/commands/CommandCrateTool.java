@@ -16,7 +16,6 @@ import java.util.Arrays;
 public class CommandCrateTool implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        System.out.println(Arrays.toString(args));
         if (sender instanceof Player) {
             if (args.length == 0)  {
                 return false;

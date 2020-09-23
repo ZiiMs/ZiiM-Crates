@@ -39,7 +39,6 @@ public class ItemsInventory implements IHelper {
             String foundTitle = Config.get().getString(keys + ".Title");
             if (title.trim().equals(foundTitle + " items")) {
                 itemsList = (ArrayList<ItemStack>) Config.get().getList(keys + ".Items");
-                System.out.println("itemsList = " + itemsList);
             }
         }
         int i = 9;
@@ -82,7 +81,6 @@ public class ItemsInventory implements IHelper {
         }
         if (clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE)) return;
         if (clickedItem.getType().equals(Material.GREEN_STAINED_GLASS_PANE)) {
-            System.out.println("Save");
             ArrayList<ItemStack> itemList = new ArrayList<>();
             for (ItemStack item : inv.getContents()) {
                 if (item != null && !item.getType().equals(Material.GREEN_STAINED_GLASS_PANE) && !item.getType().equals(Material.GRAY_STAINED_GLASS_PANE) && !item.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
@@ -90,7 +88,6 @@ public class ItemsInventory implements IHelper {
                 }
             }
             itemList.toArray(new ItemStack[0]);
-            System.out.println("items.length = " + itemList.size());
             if (itemList.size() != 0) {
                 for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
                     String foundTitle = Config.get().getString(keys + ".Title");

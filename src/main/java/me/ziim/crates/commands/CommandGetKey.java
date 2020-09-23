@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class CommandGetKey implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        System.out.println(Arrays.toString(args));
         if (sender instanceof Player) {
             if (args.length == 0) {
                 return false;
@@ -21,7 +20,6 @@ public class CommandGetKey implements CommandExecutor {
             Player player = (Player) sender;
             for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
                 if (keys.equals(crateId)) {
-                    System.out.println("Founding giving key");
                     ItemStack key = Config.get().getItemStack(keys + ".Key");
                     player.getInventory().addItem(key);
                     player.sendMessage("You've been given a key to crate " + Config.get().getString(keys + ".Title"));

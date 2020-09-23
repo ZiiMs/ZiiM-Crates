@@ -36,10 +36,8 @@ public class ChestEvents implements Listener {
             for (String s : lore) {
 
                 if (s.trim().contains("Title:")) {
-                    System.out.println(s);
                     String[] temp = s.split("Title:");
                     title = temp[1].trim();
-                    System.out.println("Found String!");
                     break;
                 }
             }
@@ -72,7 +70,6 @@ public class ChestEvents implements Listener {
             for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
                 if (keys.equals(String.valueOf(location.getBlockX()) + location.getBlockY() + location.getBlockZ())) {
                     e.setCancelled(true);
-                    System.out.println("found it!" + Config.get().getString(keys + ".Title"));
                     CrateInventory i = new CrateInventory(Config.get().getString(keys + ".Title"));
                     Inventory inv = i.getInventory();
                     i.openInv(e.getPlayer());
@@ -94,7 +91,6 @@ public class ChestEvents implements Listener {
             Location location = block.getLocation();
             for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
                 if (keys.equals(String.valueOf(location.getBlockX()) + location.getBlockY() + location.getBlockZ())) {
-                    System.out.println("removing it!");
                     Config.get().set(String.valueOf(location.getBlockX()) + location.getBlockY() + location.getBlockZ(), null);
                     Config.save();
                     break;
