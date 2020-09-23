@@ -73,8 +73,9 @@ public class ChestEvents implements Listener {
                 if (keys.equals(String.valueOf(location.getBlockX()) + location.getBlockY() + location.getBlockZ())) {
                     e.setCancelled(true);
                     System.out.println("found it!" + Config.get().getString(keys + ".Title"));
-                    CrateInventory i = new CrateInventory();
-                    Inventory inv = i.crateInventory(e.getPlayer(), Config.get().getString(keys + ".Title"));
+                    CrateInventory i = new CrateInventory(Config.get().getString(keys + ".Title"));
+                    Inventory inv = i.getInventory();
+                    i.openInv(e.getPlayer());
 
                     ItemStack key = Config.get().getItemStack(keys + ".Key");
                     inv.setItem(18, key);

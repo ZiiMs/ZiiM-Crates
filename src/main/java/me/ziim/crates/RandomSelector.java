@@ -16,7 +16,7 @@ public class RandomSelector {
 
     public RandomSelector(List<Item> itemList) {
         items = itemList;
-        for(Item item : items) {
+        for (Item item : items) {
             totalSum += item.prob;
         }
     }
@@ -25,10 +25,10 @@ public class RandomSelector {
         int index = rand.nextInt(totalSum);
         int sum = 0;
         int i = 0;
-        while (sum<index) {
+        while (sum < index) {
             sum = sum + items.get(i++).prob;
         }
-        return items.get(Math.max(0, i-1));
+        return items.get(Math.max(0, i - 1));
     }
 
 }

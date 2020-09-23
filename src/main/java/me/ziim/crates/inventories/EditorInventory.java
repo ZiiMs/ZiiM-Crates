@@ -1,64 +1,85 @@
 package me.ziim.crates.inventories;
 
+import me.ziim.crates.Config;
 import me.ziim.crates.ZiiMCrates;
+import me.ziim.crates.inventoryHelper.IHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
-public class EditorInventory {
+import java.util.Arrays;
+
+public class EditorInventory implements IHelper {
+    private final Inventory inv;
     Plugin plugin = ZiiMCrates.getPlugin(ZiiMCrates.class);
 
-    public void editInventory(Player player, String title) {
-        Inventory i = plugin.getServer().createInventory(null, 27, title + ChatColor.BLUE + " Editor");
+    public EditorInventory(String title) {
+        inv = plugin.getServer().createInventory(this, 27, title);
 
-        ItemStack glassPane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
-        ItemMeta meta = glassPane.getItemMeta();
-        meta.setDisplayName(" ");
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        glassPane.setItemMeta(meta);
+        initItems();
+    }
 
-
-        ItemStack confirmPane = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
-        meta = confirmPane.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "Save");
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        confirmPane.setItemMeta(meta);
-
-        ItemStack denyPane = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
-        meta = denyPane.getItemMeta();
-        meta.setDisplayName(ChatColor.RED + "Cancel");
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        denyPane.setItemMeta(meta);
-
-        ItemStack keys = new ItemStack(Material.TRIPWIRE_HOOK, 1);
-        meta = keys.getItemMeta();
-        meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Set crate key");
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        keys.setItemMeta(meta);
-
-        ItemStack items = new ItemStack(Material.GOLDEN_SWORD, 1);
-        meta = items.getItemMeta();
-        meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Set crate rewards");
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        items.setItemMeta(meta);
-
+    public void initItems() {
         for (int j = 0; j <= 26; j++) {
-            if (j == 9 || j == 12 || j == 14 || j == 17) {
+            if (j == 9 || j == 17) {
                 continue;
             }
-            i.setItem(j, glassPane);
+            inv.setItem(j, newItem(Material.GRAY_STAINED_GLASS_PANE, " "));
         }
+        inv.setItem(9, newItem(Material.GOLDEN_SWORD, "See crate rewards"));
+        inv.setItem(17, newItem(Material.TRIPWIRE_HOOK, "Set crate key"));
+    }
 
-        i.setItem(9, items);
-        i.setItem(12, confirmPane);
-        i.setItem(14, denyPane);
-        i.setItem(17, keys);
+    protected ItemStack newItem(final Material material, final String name, final String... lore) {
+        final ItemStack item = new ItemStack(material);
+        final ItemMeta meta = item.getItemMeta();
 
-        player.openInventory(i);
+        meta.setDisplayName(name);
+        meta.setLore(Arrays.asList(lore));
+
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public void openInv(Player player) {
+        player.openInventory(inv);
+    }
+
+    public Inventory getInv() {
+        return inv;
+    }
+
+    @Override
+    public void onGUIClick(Player whoClicked, int slot, ItemStack clickedItem, InventoryView view, Inventory inventory, ItemStack cursor) {
+        if (clickedItem == null) {
+            return;
+        }
+        for (String keys : Config.get().getConfigurationSection("").getKeys(false)) {
+            String title = Config.get().getString(keys + ".Title");
+            if (view.getTitle().equals(title + ChatColor.BLUE + " editor")) {
+                if (clickedItem.getType().equals(Material.GOLDEN_SWORD)) {
+                    ItemsInventory itemsInv = new ItemsInventory(title + " items");
+                    itemsInv.openInv(whoClicked);
+                    break;
+                } else if (clickedItem.getType().equals(Material.TRIPWIRE_HOOK)) {
+                    KeyInventory keysInv = new KeyInventory(title + " key");
+                    keysInv.openInv(whoClicked);
+                    break;
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public Inventory getInventory() {
+        return inv;
     }
 }
+
