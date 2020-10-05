@@ -12,7 +12,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -142,7 +141,7 @@ public class CrateInventory implements IHelper {
                     whoClicked.getInventory().removeItem(key);
                 } else if (clickedItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
                     view.close();
-                } else if (clickedItem.getType().equals(Material.YELLOW_STAINED_GLASS_PANE) && hasPerm(whoClicked, "zc.createcrate")) {
+                } else if (clickedItem.getType().equals(Material.YELLOW_STAINED_GLASS_PANE) && whoClicked.hasPermission("zc.createcrate")) {
                     EditorInventory editInv = new EditorInventory(view.getTitle() + ChatColor.BLUE + " editor");
                     editInv.openInv(whoClicked);
                 }
@@ -154,14 +153,5 @@ public class CrateInventory implements IHelper {
     @Override
     public Inventory getInventory() {
         return inv;
-    }
-
-    public boolean hasPerm(Player player, String perm) {
-        for (PermissionAttachmentInfo perms : player.getEffectivePermissions()) {
-            if (perms.getPermission().equals(perm) || player.isOp()) {
-                return true;
-            }
-        }
-        return false;
     }
 }
